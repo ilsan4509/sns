@@ -20,7 +20,7 @@ exports.isNotLoggedIn = (req, res, next) => {
 exports.verifyToken = (req, res, next) => {
   try {
     //검증작업. req.data.decoded 요청간(미들웨어 간) data 전달하는 방법
-    req.data.decoded = jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
+    req.decoded = jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
     return next();
   } catch (error) {
     if (error.name === 'TokenExpiredError') { // 유효기간 초과

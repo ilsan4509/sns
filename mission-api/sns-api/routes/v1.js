@@ -23,12 +23,12 @@ router.post('/token', async (req, res) => {
         message: '등록되지 않은 도메인입니다. 먼저 도메인을 등록하세요',
       });
     }
-    const token = jwt.sign({
+    const token = jwt.sign({//토큰발급
       id: domain.User.id,
       nick: domain.User.nick,
     }, process.env.JWT_SECRET, {
-      expiresIn: '1m', // 1분
-      issuer: 'nodebird',
+      expiresIn: '1m', // 유효기간이 지나면 재발급 받아야함
+      issuer: 'nodemission', //발급해주는 곳
     });
     return res.json({
       code: 200,
